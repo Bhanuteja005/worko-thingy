@@ -1,0 +1,82 @@
+# Worko User API Guide
+
+Welcome to the Worko User API! This guide will help you get started with our API, which allows you to manage user information efficiently. Below, you'll find instructions on how to set up the project, use the API endpoints, and configure your environment.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed on your machine
+- MongoDB installed and running (NoSQL database)
+- An environment for running server-side JavaScript
+
+### Installation
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the necessary dependencies by running:npm install express mongoose dotenv
+npm install --save-dev nodemon
+npm install joi
+4. Set up your environment variables by creating a `.env` file in the root directory. Include the following variables:DB_URI=mongodb://localhost:27017/worko
+Replace the `DB_URI` value with your MongoDB connection string.
+
+### Running the Server
+
+Start the server by running:npm run start
+The API will be available at `http://localhost:4000`.
+
+## API Endpoints
+
+### List Users
+
+- **GET** `/worko/user`
+  - Retrieves a list of all users.
+
+### Get User Details
+
+- **GET** `/worko/user/:userId`
+  - Retrieves details of a specific user by their ID.
+
+### Create User
+
+- **POST** `/worko/user`
+  - Creates a new user.
+  - **Required Payload:**
+    - `email`: User's email address
+    - `name`: User's name
+    - `age`: User's age
+    - `city`: User's city
+    - `zipCode`: User's zip code
+
+### Update User
+
+- **PUT** `/worko/user/:userId`
+  - Updates an existing user's information.
+  - Accepts the same payload as the POST endpoint.
+
+### Partially Update User
+
+- **PATCH** `/worko/user/:userId`
+  - Partially updates an existing user's information.
+  - You can send one or more fields to update.
+
+### Soft Delete User
+
+- **DELETE** `/worko/user/:userId`
+  - Soft deletes a user in the database. The user is not completely removed but marked as deleted.
+
+## Validation
+
+The API validates the following fields on each call:
+
+- `email`: Must be a valid email address.
+- `zipCode`: Must be a valid zip code.
+- `id`: Required for POST, PUT, and DELETE operations.
+
+## Database Configuration
+
+This API uses MongoDB as its database. The database connection string is read from an environment variable `DB_URI`. Ensure this variable is set in your `.env` file.
+
+## Conclusion
+
+You're now ready to use the Worko User API to manage user information. If you encounter any issues or have questions, please refer to the project's documentation or contact support.
